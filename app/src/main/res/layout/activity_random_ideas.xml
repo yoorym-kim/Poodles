@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이 아이디어는 어떤가요?"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp" />
+
+
+
+    <TextView
+        android:id="@+id/Random1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewResult"
+        android:layout_marginTop="12dp"
+        android:textColor="@android:color/white"
+        android:text="지능형 음성 기반 진료비 안내 어플리케이션" />
+
+
+
+    <TextView
+        android:id="@+id/Random2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Random1TextView"
+        android:layout_marginTop="9dp"
+        android:textColor="@android:color/white"
+        android:text="아이디어: 환자들이 진료 비용을 명확하게 이해하고 예상 비용을 미리 파악할 수 있는 어플리케이션" />
+
+
+    <TextView
+        android:id="@+id/Random3TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Random2TextView"
+        android:layout_marginTop="9dp"
+        android:textColor="@android:color/white"
+        android:text="내용: 환자들은 어플리케이션을 통해 진료 예약 시 예상 비용을 확인하고, 음성 인터페이스를 통해 친절한 안내를 받을 수 있습니다. 또한, 보험 혜택 등을 고려하여 최종 진료 비용을 정확하게 계산하여 환자에게 제공합니다." />
+
+
+    <!-- "다른 아이디어 추천받기" 버튼 -->
+    <Button
+        android:id="@+id/buttonGetAnotherIdea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Random3TextView"
+        android:layout_marginTop="16dp"
+        android:text="다른 아이디어 추천받기" />
+
+
+
+</RelativeLayout>

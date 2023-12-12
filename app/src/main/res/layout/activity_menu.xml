@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/buttonRecommendIdea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:text="아이디어 추천받기"
+        android:textColor="@color/white"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/buttonRandomIdea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:text="랜덤 아이디어"
+        android:textColor="@color/white"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/buttonMyIdeas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:text="내 아이디어 보관함"
+        android:textColor="@color/white"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/buttonSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:text="환경설정"
+        android:textColor="@color/white"
+        android:layout_marginTop="12dp" />
+
+</LinearLayout>

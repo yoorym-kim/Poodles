@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="25dp">
+
+
+    <ImageView
+        android:id="@+id/imageViewIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/sm_logo"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/textViewGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디어 추천이 필요한가요?"
+        android:layout_below="@id/imageViewIcon"
+        android:layout_marginTop="20dp"
+        android:textSize="23sp"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textViewGuide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생각, 고민거리 또는 대충 구상한 아이디어 주제를 번호를 붙여 입력해주세요."
+        android:layout_below="@id/textViewGuide"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editTextIdeaInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewGuide2"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        android:hint="ex) 아이디어 분야, 주제, 조건"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/buttonGetRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextIdeaInput"
+        android:layout_marginTop="250dp"
+        android:background="@android:color/transparent"
+        android:text="추천받기"
+        android:textColor="#FAFFBC"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

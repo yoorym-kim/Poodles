@@ -1,4 +1,4 @@
-package org.techtown.poodles;
+package org.techtown.poodles.data;
 
 import androidx.annotation.NonNull;
 
@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitCreator {
-    String baseUrl = "https://api.openai.com/v1/chat/completions";
+    String baseUrl = "https://api.openai.com/";
 
     private HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(HttpLoggingInterceptor.Logger.DEFAULT)
             .setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -25,7 +25,7 @@ public class RetrofitCreator {
         @Override
         public Response intercept(@NonNull Chain chain) throws IOException {
             Request.Builder request = chain.request().newBuilder();
-            request.addHeader("Authorization", "Bearer" + "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");
+            request.addHeader("Authorization", "Bearer " + "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");
             return chain.proceed(request.build());
         }
     };
@@ -45,4 +45,6 @@ public class RetrofitCreator {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
+
+    public ChatGptApiService chatGptApiService = createRetrofit().create(ChatGptApiService.class);
 }

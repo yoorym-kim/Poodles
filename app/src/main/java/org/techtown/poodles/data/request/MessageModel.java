@@ -1,4 +1,4 @@
-package org.techtown.poodles.data;
+package org.techtown.poodles.data.request;
 
 public class MessageModel {
     String role;

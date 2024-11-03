@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="24dp" />
 
-    <!-- Button 1 with 2 TextViews -->
+
     <Button
         android:id="@+id/buttonIdea1"
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_below="@id/buttonIdea1"
         android:layout_marginTop="12dp"
         android:textColor="@android:color/white"
-        android:text="전자 건강 기록 통합 플랫폼" />
+        android:text=" " />
 
     <TextView
         android:id="@+id/idea1ContentTextView"
@@ -43,9 +43,9 @@
         android:layout_below="@id/idea1TextView"
         android:layout_marginTop="9dp"
         android:textColor="@android:color/white"
-        android:text="의료 기록을 효과적으로 관리하고 활용하기 위한 통합 플랫폼 개발" />
+        android:text=" " />
 
-    <!-- Button 2 with 2 TextViews -->
+
     <Button
         android:id="@+id/buttonIdea2"
         android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
         android:layout_below="@id/buttonIdea2"
         android:layout_marginTop="12dp"
         android:textColor="@android:color/white"
-        android:text="AI를 활용한 실시간 건강 모니터링" />
+        android:text=" " />
 
     <TextView
         android:id="@+id/idea2ContentTextView"
@@ -70,7 +70,7 @@
         android:layout_below="@id/idea2TextView"
         android:layout_marginTop="9dp"
         android:textColor="@android:color/white"
-        android:text="신체 건강 상태를 실시간으로 모니터링하고 개인화된 건강 조언 제공" />
+        android:text=" " />
 
     <!-- Button 3 with 2 TextViews -->
     <Button
@@ -88,7 +88,7 @@
         android:layout_below="@id/buttonIdea3"
         android:layout_marginTop="8dp"
         android:textColor="@android:color/white"
-        android:text="의료진을 위한 AI 기반 의사 지원 도구" />
+        android:text=" " />
 
     <TextView
         android:id="@+id/idea3ContentTextView"
@@ -97,9 +97,9 @@
         android:layout_below="@id/idea3TextView"
         android:layout_marginTop="8dp"
         android:textColor="@android:color/white"
-        android:text="의사 및 의료진을 위한 의사 결정 지원을 위한 AI 도구 개발" />
+        android:text=" " />
 
-    <!-- "다른 아이디어 추천받기" 버튼 -->
+
     <Button
         android:id="@+id/buttonGetAnotherIdea"
         android:layout_width="wrap_content"

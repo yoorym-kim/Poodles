@@ -1,61 +1,31 @@
 package org.techtown.poodles;
 
+import static org.techtown.poodles.InputIdeaActivity.KEY_ANSWERS;
+
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import org.techtown.poodles.ChatGPTApi;
-import java.io.IOException;
-import java.lang.ref.WeakReference;
+
+import com.google.gson.Gson;
+
+import org.techtown.poodles.data.response.ResponseMessage;
 
 public class RecommendationResultActivity extends AppCompatActivity {
-
-    private TextView idea1TextView;
-    private TextView idea2TextView;
-    private TextView idea3TextView;
+    public static final String IDEA_DETAIL = "IDEA_DETAIL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation_result);
-
+        getAnswers();
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        idea1TextView = findViewById(R.id.idea1TextView);
-        idea2TextView = findViewById(R.id.idea2TextView);
-        idea3TextView = findViewById(R.id.idea3TextView);
-
-        String userIdea = getIntent().getStringExtra("user_idea");
-        new GetGPTIdeasTask(this).execute(userIdea);
-
-        Button buttonIdea1 = findViewById(R.id.buttonIdea1);
-        buttonIdea1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendationResultActivity.this, Detail1Activity.class));
-            }
-        });
-
-        Button buttonIdea2 = findViewById(R.id.buttonIdea2);
-        buttonIdea2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendationResultActivity.this, Detail2Activity.class));
-            }
-        });
-
-        Button buttonIdea3 = findViewById(R.id.buttonIdea3);
-        buttonIdea3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendationResultActivity.this, DetailsActivity.class));
-            }
-        });
+        retry();
     }
 
     @Override
@@ -76,38 +46,80 @@ public class RecommendationResultActivity extends AppCompatActivity {
         finish();
     }
 
-    private static class GetGPTIdeasTask extends AsyncTask<String, Void, String> {
-        private WeakReference<RecommendationResultActivity> activityReference;
+    private void getAnswers() {
+        String jsonIdeas = getIntent().getStringExtra(KEY_ANSWERS);
+        ResponseMessage idea = new Gson().fromJson(jsonIdeas, ResponseMessage.class);
 
-        public GetGPTIdeasTask(RecommendationResultActivity activity) {
-            this.activityReference = new WeakReference<>(activity);
-        }
+        TextView idea1TextView = findViewById(R.id.idea1TextView);
+        TextView idea1ContentTextView = findViewById(R.id.idea1ContentTextView);
 
-        @Override
-        protected String doInBackground(String... params) {
-            String userInput = params[0];
-            try {
-                return ChatGPTApi.getIdeasFromGPT(userInput);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "ChatGPT에서 아이디어를 가져오는 중 오류가 발생했습니다.";
+        TextView idea2TextView = findViewById(R.id.idea2TextView);
+        TextView idea2ContentTextView = findViewById(R.id.idea1ContentTextView);
+
+        TextView idea3TextView = findViewById(R.id.idea3TextView);
+        TextView idea3ContentTextView = findViewById(R.id.idea1ContentTextView);
+
+        try {
+            if(idea.getIdeas() != null && idea.getIdeas().size() >= 3) {
+                ResponseMessage.IdeaModel firstIdea = idea.getIdeas().get(0);
+                ResponseMessage.IdeaModel secondIdea = idea.getIdeas().get(1);
+                ResponseMessage.IdeaModel thirdIdea = idea.getIdeas().get(2);
+
+                idea1TextView.setText(firstIdea.getTitle());
+                idea1ContentTextView.setText(firstIdea.getDescription());
+                navToDetail1(firstIdea);
+
+                idea2TextView.setText(secondIdea.getTitle());
+                idea2ContentTextView.setText(secondIdea.getDescription());
+                navToSecondIdea(secondIdea);
+
+                idea3TextView.setText(thirdIdea.getTitle());
+                idea3ContentTextView.setText(thirdIdea.getDescription());
+                navToThirdIdea(thirdIdea);
             }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
+    }
 
-        @Override
-        protected void onPostExecute(String GPTIdeas) {
-            RecommendationResultActivity activity = activityReference.get();
-            if (activity == null || activity.isFinishing()) return;
+    private void navToDetail1(ResponseMessage.IdeaModel ideaModel) {
+        Button buttonIdea1 = findViewById(R.id.buttonIdea1);
+        buttonIdea1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {navToDetailActivity(ideaModel);}
+        });
+    }
 
-            String[] ideasArray = GPTIdeas.split("\n");
+    private void navToSecondIdea(ResponseMessage.IdeaModel ideaModel) {
+        Button buttonIdea2 = findViewById(R.id.buttonIdea2);
+        buttonIdea2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {navToDetailActivity(ideaModel);}
+        });
+    }
 
-            TextView idea1TextView = activity.findViewById(R.id.idea1TextView);
-            TextView idea2TextView = activity.findViewById(R.id.idea2TextView);
-            TextView idea3TextView = activity.findViewById(R.id.idea3TextView);
+    private void navToThirdIdea(ResponseMessage.IdeaModel ideaModel) {
+        Button buttonIdea3 = findViewById(R.id.buttonIdea3);
+        buttonIdea3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {navToDetailActivity(ideaModel);}
+        });
+    }
 
-            idea1TextView.setText(ideasArray.length >= 1 ? ideasArray[0] : "");
-            idea2TextView.setText(ideasArray.length >= 2 ? ideasArray[1] : "");
-            idea3TextView.setText(ideasArray.length >= 3 ? ideasArray[2] : "");
-        }
+    private void retry() {
+        Button buttonGetAnotherIdea = findViewById(R.id.buttonGetAnotherIdea);
+        buttonGetAnotherIdea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
+    }
+
+    private void navToDetailActivity(ResponseMessage.IdeaModel ideaModel) {
+        Intent intent = new Intent(RecommendationResultActivity.this, Detail1Activity.class);
+        intent.putExtra(IDEA_DETAIL, new Gson().toJson(ideaModel));
+        startActivity(intent);
     }
 }

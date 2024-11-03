@@ -1,15 +1,15 @@
-package org.techtown.poodles.data;
+package org.techtown.poodles.data.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseModel {
+public class ResponseFormatModel {
     @SerializedName("type")
     String type = "json_object";
 
-    public ResponseModel() {
+    public ResponseFormatModel() {
 
     }
-    public ResponseModel(String type) {
+    public ResponseFormatModel(String type) {
         this.type = type;
     }
 }

@@ -37,8 +37,6 @@
         </activity>
         <activity android:name=".Detail1Activity">
         </activity>
-        <activity android:name=".Detail2Activity">
-        </activity>
         <activity android:name=".RandomIdeasActivity">
         </activity>
 
